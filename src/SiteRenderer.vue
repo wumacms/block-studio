@@ -39,7 +39,7 @@
         leave-from-class="translate-y-0 opacity-100 scale-100" 
         leave-to-class="translate-y-4 opacity-0 scale-95"
       >
-        <div v-if="showPanel" class="bg-white/80 backdrop-blur-2xl p-6 rounded-3xl border border-white/40 shadow-2xl w-80 mb-2">
+        <div v-if="showPanel" class="bg-white/80 backdrop-blur-2xl p-6 rounded-3xl border border-white/40 shadow-2xl w-80 mb-2 max-h-[70vh] overflow-y-auto custom-scrollbar">
           <h3 class="text-gray-900 font-black mb-4 flex items-center gap-2">
             <span class="text-xl">🛠️</span> 页面引擎设置
           </h3>
@@ -254,5 +254,22 @@ const handleNavClick = (item, event) => {
 .page-fade-leave-to {
   opacity: 0;
   transform: translateY(-20px);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 </style>
