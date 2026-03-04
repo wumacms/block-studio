@@ -9,7 +9,7 @@
     />
 
     <!-- 2. 主内容区域 (按区块渲染) -->
-    <main class="flex-grow">
+    <main class="flex-grow transition-all duration-700" :class="mainLayoutClass">
       <transition 
         name="page-fade" 
         mode="out-in"
@@ -88,10 +88,10 @@
           <!-- 页脚切换 -->
           <div>
             <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-3">页脚款式</p>
-            <div class="flex gap-2">
+            <div class="grid grid-cols-3 gap-2">
               <button v-for="f in Object.keys(footerTemplates)" :key="f"
                       @click="siteData.footer.template = f"
-                      class="flex-1 px-3 py-2 text-[10px] font-bold border rounded-xl transition-all"
+                      class="px-3 py-2 text-[10px] font-bold border rounded-xl transition-all"
                       :class="siteData.footer.template === f ? 'bg-black text-white border-black' : 'bg-gray-50 text-gray-600 border-gray-100 hover:bg-gray-100'">
                 {{ formatName(f) }}
               </button>
@@ -126,6 +126,9 @@ const navTemplates = {
   CenteredNavbar: defineAsyncComponent(() => import('./blocks/navigation/CenteredNavbar.vue')),
   FloatingNavbar: defineAsyncComponent(() => import('./blocks/navigation/FloatingNavbar.vue')),
   IndexNavbar: defineAsyncComponent(() => import('./blocks/navigation/IndexNavbar.vue')),
+  GlassNavbar: defineAsyncComponent(() => import('./blocks/navigation/GlassNavbar.vue')),
+  SideNavbar: defineAsyncComponent(() => import('./blocks/navigation/SideNavbar.vue')),
+  DockNavbar: defineAsyncComponent(() => import('./blocks/navigation/DockNavbar.vue')),
 }
 
 // 动态导入页脚模板 (新设计的区块)
@@ -133,6 +136,9 @@ const footerTemplates = {
   MainFooter: defineAsyncComponent(() => import('./blocks/footers/MainFooter.vue')),
   SimpleFooter: defineAsyncComponent(() => import('./blocks/footers/SimpleFooter.vue')),
   ModernFooter: defineAsyncComponent(() => import('./blocks/footers/ModernFooter.vue')),
+  GlassFooter: defineAsyncComponent(() => import('./blocks/footers/GlassFooter.vue')),
+  BrutalFooter: defineAsyncComponent(() => import('./blocks/footers/BrutalFooter.vue')),
+  PillFooter: defineAsyncComponent(() => import('./blocks/footers/PillFooter.vue')),
 }
 
 // 动态导入区块模板
@@ -143,10 +149,14 @@ const blockTemplates = {
   SplitSection: defineAsyncComponent(() => import('./blocks/sections/SplitSection.vue')),
   TeamSection: defineAsyncComponent(() => import('./blocks/sections/TeamSection.vue')),
   FaqSection: defineAsyncComponent(() => import('./blocks/sections/FaqSection.vue')),
-  CtaSection: defineAsyncComponent(() => import('./blocks/sections/CtaSection.vue'))
+  CtaSection: defineAsyncComponent(() => import('./blocks/sections/CtaSection.vue')),
+  StatsSection: defineAsyncComponent(() => import('./blocks/sections/StatsSection.vue')),
+  LogoCloud: defineAsyncComponent(() => import('./blocks/sections/LogoCloud.vue')),
+  PricingSection: defineAsyncComponent(() => import('./blocks/sections/PricingSection.vue')),
+  TestimonialsSection: defineAsyncComponent(() => import('./blocks/sections/TestimonialsSection.vue')),
 }
 
-const sectionOptions = ['HeroSection', 'FeatureGrid', 'BentoGrid', 'SplitSection', 'TeamSection', 'FaqSection', 'CtaSection']
+const sectionOptions = ['HeroSection', 'FeatureGrid', 'BentoGrid', 'SplitSection', 'TeamSection', 'FaqSection', 'CtaSection', 'StatsSection', 'LogoCloud', 'PricingSection', 'TestimonialsSection']
 
 const themes = ['pop-art', 'minimal', 'cyberpunk', 'fresh', 'luxury', 'yellow']
 
@@ -168,6 +178,14 @@ const footerComponent = computed(() => {
     return footerTemplates[siteData.footer.template]
   }
   return footerTemplates.MainFooter
+})
+
+// 布局自适应
+const mainLayoutClass = computed(() => {
+  if (siteData.navigation.template === 'SideNavbar') {
+    return 'md:ml-24'
+  }
+  return ''
 })
 
 const themePreviewClasses = (t) => {

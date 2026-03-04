@@ -303,6 +303,77 @@ export const blockDefaults = {
         title: '准备好加入我们了吗？',
         subtitle: '现在就开启您的品牌升级计划。',
         ctaText: '立即预约'
+    },
+    StatsSection: {
+        title: '数据证明实力',
+        subtitle: '我们用结果说话，以下是我们在过去一年中取得的里程碑。',
+        items: [
+            { value: '250+', label: '完成项目', desc: '覆盖 20 多个国家及地区的精品案例。' },
+            { value: '98%', label: '客户满意度', desc: '每一个项目都是我们极致匠心的体现。' },
+            { value: '15+', label: '设计奖项', desc: '获得国际权威机构的高度认可与肯定。' },
+            { value: '50ms', label: '渲染速度', desc: '极速流畅的数字交互体验，拒绝等待。' }
+        ]
+    },
+    LogoCloud: {
+        title: '值得信赖的合作伙伴',
+        subtitle: '与全球顶尖品牌共同创造数字未来。',
+        items: [
+            { name: 'Apple' }, { name: 'SpaceX' }, { name: 'Google' }, { name: 'Adobe' }, { name: 'Tesla' }, { name: 'Microsoft' }
+        ]
+    },
+    PricingSection: {
+        title: '透明的定价方案',
+        subtitle: '无论您是初创工作室还是跨国企业，我们都有最适合您的计划。',
+        items: [
+            {
+                name: '创意人',
+                priceMonthly: 0,
+                priceYearly: 0,
+                desc: '探索数字艺术的无限可能，免费起步。',
+                features: ['3 个活跃区块', '标准主题库', '社区支持', 'AG.Cloud 托管'],
+                featured: false,
+                cta: '立即免费尝试'
+            },
+            {
+                name: '工作室',
+                priceMonthly: 299,
+                priceYearly: 239,
+                desc: '为专业团队设计的进阶协作工具。',
+                features: ['无限区块数量', '自定义主题注入', '优先技术支持', '私有云部署', '团队权限管理'],
+                featured: true,
+                cta: '开启 14 天试用'
+            },
+            {
+                name: '企业版',
+                priceMonthly: 999,
+                priceYearly: 799,
+                desc: '满足对安全、稳定与性能的极致追求。',
+                features: ['SLA 全时报障', '安全审计支持', '1对1专属顾问', '全栈 API 接入'],
+                featured: false,
+                cta: '联系大客户经理'
+            }
+        ]
+    },
+    TestimonialsSection: {
+        title: '用户真实反馈',
+        subtitle: '听听那些已经通过 Block Studio 重新定义了品牌高度的创作者们怎么说。',
+        items: [
+            {
+                name: '张小龙',
+                role: '高级产品经理',
+                content: '这是我用过的最直观的区块化开发系统。设计感极强，且主题适配得严丝合缝。'
+            },
+            {
+                name: '陈安妮',
+                role: '独立设计师',
+                content: 'Block Studio 完美平衡了灵活性与设计约束。它让我的创意能够在短时间内以最高水准呈现。'
+            },
+            {
+                name: '王兴',
+                role: '全栈开发者',
+                content: '作为开发者，我非常欣赏它数据与样式分离的设计理念。二次开发和主题定制都非常顺畅。'
+            }
+        ]
     }
 }
 
