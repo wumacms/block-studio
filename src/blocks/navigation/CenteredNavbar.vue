@@ -6,7 +6,7 @@
         <a href="#" @click.prevent="changePage('home')" class="flex flex-col items-center">
           <div class="text-4xl mb-1" :class="logoClasses">{{ siteData.config.theme === 'minimal' ? '⛩️' : '🚀' }}</div>
           <span class="text-2xl font-black tracking-[0.3em] uppercase" :class="textClasses">
-            {{ siteData.navigation.logo.primary }}
+            {{ data?.logo?.primary || siteData.navigation.logo.primary }}
           </span>
         </a>
       </div>
@@ -34,8 +34,13 @@
 import { computed } from 'vue'
 import { siteData, changePage } from '../../engine/siteData'
 
+const props = defineProps({
+  data: Object
+})
+
 const themeBg = computed(() => {
   switch (siteData.config.theme) {
+    case 'pop-art': return 'bg-yellow-400'
     case 'minimal': return 'bg-stone-50'
     case 'cyberpunk': return 'bg-black text-white'
     case 'fresh': return 'bg-emerald-50'
@@ -57,6 +62,7 @@ const textClasses = computed(() => {
   if (t === 'fresh') return 'text-emerald-800 font-serif italic'
   if (t === 'luxury') return 'text-amber-500 tracking-[0.4em]'
   if (t === 'minimal') return 'text-stone-900 font-light'
+  if (t === 'yellow') return 'text-amber-900 tracking-tighter'
   return 'text-gray-900'
 })
 
@@ -66,6 +72,7 @@ const borderClasses = computed(() => {
   if (t === 'cyberpunk') return 'border-cyan-500/30'
   if (t === 'fresh') return 'border-emerald-200'
   if (t === 'luxury') return 'border-amber-500/20'
+  if (t === 'yellow') return 'border-amber-900/10'
   return 'border-stone-200'
 })
 
@@ -75,6 +82,7 @@ const indicatorClasses = computed(() => {
   if (t === 'cyberpunk') return 'bg-cyan-400 shadow-[0_0_10px_cyan]'
   if (t === 'fresh') return 'bg-emerald-500'
   if (t === 'luxury') return 'bg-amber-500'
+  if (t === 'yellow') return 'bg-amber-900'
   return 'bg-stone-800'
 })
 

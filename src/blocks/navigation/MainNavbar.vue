@@ -12,10 +12,10 @@
              </div>
              <div class="flex flex-col">
                <span class="text-xl font-black leading-none tracking-tighter" :class="brandPrimaryClasses">
-                 {{ siteData.navigation.logo.primary }}
+                 {{ data?.logo?.primary || siteData.navigation.logo.primary }}
                </span>
                <span class="text-xs font-bold opacity-60 tracking-widest" :class="brandSecondaryClasses">
-                 {{ siteData.navigation.logo.secondary }}
+                 {{ data?.logo?.secondary || siteData.navigation.logo.secondary }}
                </span>
              </div>
           </a>
@@ -39,7 +39,7 @@
         <div class="flex items-center gap-4">
           <button class="hidden sm:block px-6 py-2.5 rounded-full font-black text-sm transition-all duration-300 transform hover:-translate-y-0.5"
                   :class="ctaClasses">
-            开始尝试
+            {{ data?.ctaText || 'Get Started' }}
           </button>
           
           <!-- Mobile Menu Toggle -->
@@ -75,7 +75,7 @@
           </button>
           <div class="pt-8">
             <button class="px-10 py-5 rounded-full font-black text-lg" :class="ctaClasses">
-              立即咨询
+              {{ data?.ctaText || 'Consult Now' }}
             </button>
           </div>
         </div>
@@ -87,6 +87,10 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { siteData, changePage } from '../../engine/siteData'
+
+const props = defineProps({
+  data: Object
+})
 
 const isMobileMenuOpen = ref(false)
 
@@ -101,6 +105,8 @@ const themeClasses = computed(() => {
     case 'minimal': return 'bg-stone-50/80 backdrop-blur-md border-b border-stone-200'
     case 'cyberpunk': return 'bg-slate-900/90 backdrop-blur-md border-b border-cyan-500/50 text-white'
     case 'fresh': return 'bg-emerald-50/90 backdrop-blur-md border-b border-emerald-100'
+    case 'luxury': return 'bg-slate-950/90 backdrop-blur-md border-b border-amber-500/20 text-white'
+    case 'yellow': return 'bg-amber-50/90 backdrop-blur-md border-b border-amber-200'
     default: return 'bg-white border-b border-gray-100'
   }
 })
@@ -123,6 +129,7 @@ const brandPrimaryClasses = computed(() => {
   if (siteData.config.theme === 'cyberpunk') return 'text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]'
   if (siteData.config.theme === 'fresh') return 'text-emerald-700 font-serif italic'
   if (siteData.config.theme === 'luxury') return 'text-amber-500 tracking-[0.3em]'
+  if (siteData.config.theme === 'yellow') return 'text-amber-900'
   return 'text-gray-900'
 })
 

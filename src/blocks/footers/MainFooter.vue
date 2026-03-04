@@ -10,14 +10,16 @@
             </span>
           </div>
           <p class="text-sm opacity-60 leading-relaxed mb-6">
-            致力于用设计与技术重新定义数字世界的边界。每一个像素，都承载着我们的梦想。
+            {{ data?.siteDescription || '致力于用设计与技术重新定义数字世界的边界。' }}
           </p>
           <div class="flex gap-4">
-            <a v-for="i in 4" :key="i" href="#" 
-               class="w-10 h-10 rounded-full flex items-center justify-center border transition-all hover:scale-110"
-               :class="socialIconClasses">
-               <span class="text-xs">SNS</span>
-            </a>
+            <template v-if="data?.socialLinks">
+              <a v-for="link in data.socialLinks" :key="link.label" :href="link.link" 
+                 class="w-10 h-10 rounded-full flex items-center justify-center border transition-all hover:scale-110"
+                 :class="socialIconClasses">
+                 <span class="text-[10px] font-black">{{ link.label }}</span>
+              </a>
+            </template>
           </div>
         </div>
 
@@ -47,15 +49,19 @@
 
         <!-- Newsletter -->
         <div class="md:text-left">
-          <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">周刊订阅</h4>
-          <p class="text-sm opacity-60 mb-6">获取最新的设计趋势与技术分享。</p>
+          <h4 class="font-bold mb-6 uppercase tracking-widest text-sm">
+            {{ data?.newsletterTitle || '周刊订阅' }}
+          </h4>
+          <p class="text-sm opacity-60 mb-6">
+            {{ data?.newsletterSubtitle || '获取最新的设计趋势与技术分享。' }}
+          </p>
           <div class="flex flex-col sm:flex-row gap-3">
-            <input type="text" placeholder="your@email.com" 
+            <input type="text" :placeholder="data?.newsletterPlaceholder || 'your@email.com'" 
                    class="bg-transparent border px-4 py-3 rounded-lg text-sm flex-1 focus:outline-none"
                    :class="inputClasses" />
             <button class="px-6 py-3 font-bold rounded-lg text-sm transition-transform active:scale-95 shadow-sm whitespace-nowrap"
                     :class="buttonClasses">
-              订阅
+              {{ data?.newsletterButton || '订阅' }}
             </button>
           </div>
         </div>
@@ -65,9 +71,11 @@
            :class="bottomBorderClasses">
         <p>© 2026 {{ siteData.config.siteName }}. All rights reserved.</p>
         <div class="flex gap-8">
-          <a href="#">隐私政策</a>
-          <a href="#">服务协议</a>
-          <a href="#">Cookie 设置</a>
+          <template v-if="data?.bottomLinks">
+              <a v-for="link in data.bottomLinks" :key="link.label" :href="link.link">
+                  {{ link.label }}
+              </a>
+          </template>
         </div>
       </div>
     </div>
@@ -77,6 +85,10 @@
 <script setup>
 import { computed } from 'vue'
 import { siteData, changePage } from '../../engine/siteData'
+
+const props = defineProps({
+  data: Object
+})
 
 const themeClasses = computed(() => {
   switch (siteData.config.theme) {
@@ -106,6 +118,7 @@ const socialIconClasses = computed(() => {
     case 'cyberpunk': return 'border-cyan-500 text-cyan-500 hover:bg-cyan-500/10'
     case 'fresh': return 'bg-emerald-700 border-emerald-600 text-emerald-100 hover:bg-emerald-600'
     case 'luxury': return 'border-amber-500 text-amber-500 hover:bg-amber-500/10'
+    case 'yellow': return 'border-amber-900 text-amber-900 hover:bg-amber-400/20'
     default: return 'border-gray-200 hover:bg-white'
   }
 })
@@ -116,6 +129,7 @@ const inputClasses = computed(() => {
   if (t === 'cyberpunk') return 'border-cyan-900 bg-slate-900 focus:border-cyan-500'
   if (t === 'fresh') return 'border-emerald-600 bg-emerald-700/50 focus:border-emerald-400'
   if (t === 'luxury') return 'border-amber-900 bg-slate-900 focus:border-amber-500'
+  if (t === 'yellow') return 'border-amber-400 bg-amber-50 focus:border-amber-600'
   return 'border-gray-200 focus:border-blue-500'
 })
 
@@ -126,6 +140,7 @@ const buttonClasses = computed(() => {
     case 'cyberpunk': return 'bg-cyan-500 text-black shadow-[0_0_10px_rgba(6,182,212,0.5)]'
     case 'fresh': return 'bg-emerald-400 text-emerald-950 font-bold'
     case 'luxury': return 'bg-amber-500 text-slate-900 uppercase tracking-widest'
+    case 'yellow': return 'bg-amber-950 text-amber-50 rounded-none shadow-lg'
     default: return 'bg-blue-600 text-white'
   }
 })

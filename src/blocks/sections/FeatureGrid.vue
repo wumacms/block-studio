@@ -1,6 +1,16 @@
 <template>
   <section class="py-24 px-4" :class="themeClasses">
     <div class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div v-if="data?.title" class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-6xl font-black" :class="sectionTitleClasses">
+          {{ data.title }}
+        </h2>
+        <p v-if="data?.subtitle" class="text-xl opacity-60 max-w-2xl mx-auto">
+          {{ data.subtitle }}
+        </p>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         <div v-for="(item, idx) in data.items" :key="idx" 
              class="p-8 rounded-2xl transition-all duration-300" 
@@ -32,6 +42,14 @@ const themeClasses = computed(() => {
     case 'yellow': return 'bg-amber-100 text-amber-950'
     default: return 'bg-gray-50 text-gray-900'
   }
+})
+
+const sectionTitleClasses = computed(() => {
+  if (siteData.config.theme === 'pop-art') return 'italic uppercase border-b-8 border-pink-500 inline-block'
+  if (siteData.config.theme === 'luxury') return 'font-serif text-amber-400'
+  if (siteData.config.theme === 'cyberpunk') return 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500'
+  if (siteData.config.theme === 'fresh') return 'italic'
+  return ''
 })
 
 const itemClasses = computed(() => {

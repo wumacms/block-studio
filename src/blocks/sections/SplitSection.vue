@@ -7,8 +7,7 @@
       <div class="flex-1 relative group">
         <div class="absolute -inset-4 rounded-3xl transform transition-transform group-hover:rotate-1 z-0 shadow-xl" :class="imageBgClasses"></div>
         <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
-          <img :src="data?.image || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80'" 
-               class="w-full h-[500px] object-cover" />
+          <img :src="data?.image" class="w-full h-[500px] object-cover" />
         </div>
       </div>
 
@@ -16,10 +15,10 @@
       <div class="flex-1 space-y-8">
         <div class="space-y-4">
           <h2 class="text-3xl md:text-5xl font-black leading-tight" :class="titleClasses">
-            {{ data?.title || '打造极致的数字产品' }}
+            {{ data?.title }}
           </h2>
           <p class="text-xl opacity-70 leading-relaxed">
-            {{ data?.subtitle || '我们不仅仅是提供服务，更是您业务增长的战略伙伴。' }}
+            {{ data?.subtitle }}
           </p>
         </div>
         
@@ -83,6 +82,7 @@ const imageBgClasses = computed(() => {
     case 'cyberpunk': return 'bg-purple-600/30 blur-2xl'
     case 'fresh': return 'bg-emerald-100/50 rotate-3'
     case 'luxury': return 'bg-amber-900/20 border border-amber-500/10'
+    case 'yellow': return 'bg-amber-200/40 rotate-1'
     default: return 'bg-blue-50'
   }
 })

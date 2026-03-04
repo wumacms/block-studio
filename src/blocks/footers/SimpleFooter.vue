@@ -16,10 +16,10 @@
       <div class="h-px w-20 mx-auto mb-8" :class="dividerClasses"></div>
 
       <p class="text-xs opacity-40 mb-2">
-        © 2026 {{ siteData.config.siteName }}. 所有权利保留。
+        © 2026 {{ siteData.config.siteName }}. {{ data?.copyrightText || '所有权利保留。' }}
       </p>
       <p class="text-[10px] opacity-30 uppercase tracking-[0.3em]">
-        Designed with Passion & Code
+        {{ data?.bottomTagline || 'Designed with Passion & Code' }}
       </p>
     </div>
   </footer>
@@ -28,6 +28,10 @@
 <script setup>
 import { computed } from 'vue'
 import { siteData, changePage } from '../../engine/siteData'
+
+const props = defineProps({
+  data: Object
+})
 
 const themeClasses = computed(() => {
   switch (siteData.config.theme) {
@@ -56,6 +60,7 @@ const dividerClasses = computed(() => {
   if (t === 'cyberpunk') return 'bg-cyan-500 shadow-[0_0_10px_cyan]'
   if (t === 'fresh') return 'bg-emerald-300'
   if (t === 'luxury') return 'bg-amber-500/30'
+  if (t === 'yellow') return 'bg-amber-900/40'
   return 'bg-stone-200'
 })
 </script>

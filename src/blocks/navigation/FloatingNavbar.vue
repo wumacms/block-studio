@@ -11,7 +11,7 @@
           {{ siteData.config.theme === 'minimal' ? '⚪' : '⚡' }}
         </div>
         <span class="font-black tracking-tighter text-lg" :class="brandClasses">
-          {{ siteData.navigation.logo.primary }}
+          {{ data?.logo?.primary || siteData.navigation.logo.primary }}
         </span>
       </a>
 
@@ -32,7 +32,7 @@
       <div class="flex items-center gap-2">
         <button class="px-5 py-2 rounded-full text-xs font-black transition-all active:scale-95 shadow-lg"
                 :class="ctaClasses">
-          Get Started
+          {{ data?.ctaText || 'Get Started' }}
         </button>
         
         <!-- Mobile Toggle (Simplified for Floating) -->
@@ -68,6 +68,10 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { siteData, changePage } from '../../engine/siteData'
+
+const props = defineProps({
+  data: Object
+})
 
 const isMobileOpen = ref(false)
 
@@ -133,6 +137,7 @@ const ctaClasses = computed(() => {
     case 'cyberpunk': return 'bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-black'
     case 'fresh': return 'bg-emerald-600 text-white'
     case 'luxury': return 'bg-amber-500 text-black tracking-widest'
+    case 'yellow': return 'bg-amber-400 text-amber-950 border border-amber-500 shadow-amber-200'
     default: return 'bg-indigo-600 text-white'
   }
 })

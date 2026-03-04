@@ -8,12 +8,48 @@ export const siteData = reactive({
     navigation: {
         template: 'MainNavbar',
         logo: {
-            primary: 'ANTI',
-            secondary: 'GRAVITY'
-        }
+            primary: 'BLOCK',
+            secondary: 'STUDIO'
+        },
+        ctaText: '开始尝试',
+        tagline: 'Creative Studio',
+        directoryTitle: 'Main Directory',
+        extraLinks: [
+            { label: 'Work with us', link: '#' },
+            { label: 'Photography', link: '#' },
+            { label: 'Contact', link: '#' }
+        ]
     },
     footer: {
-        template: 'MainFooter'
+        template: 'MainFooter',
+        siteDescription: '致力于用设计与技术重新定义数字世界的边界。每一个像素，都承载着我们的梦想。',
+        newsletterTitle: '周刊订阅',
+        newsletterSubtitle: '获取最新的设计趋势与技术分享。',
+        newsletterPlaceholder: 'your@email.com',
+        newsletterButton: '订阅',
+        socialLinks: [
+            { label: 'TW', link: '#' },
+            { label: 'IG', link: '#' },
+            { label: 'FB', link: '#' },
+            { label: 'GH', link: '#' }
+        ],
+        bottomLinks: [
+            { label: '隐私政策', link: '#' },
+            { label: '服务协议', link: '#' },
+            { label: 'Cookie 设置', link: '#' }
+        ],
+        ctaTitle: 'Ready to elevate your digital presence?',
+        primaryCtaText: 'Start a Project',
+        secondaryCtaText: 'View Showcase',
+        contactTitle: 'Contact Us',
+        email: 'hello@blockstudio.io',
+        phone: '+1 (555) 000-1234',
+        studioTitle: 'Studio',
+        locationsTitle: 'Locations',
+        locations: ['Tokyo / Shibuya', 'London / Soho', 'New York / BK'],
+        bottomLogo: 'BLOCK.STUDIO',
+        bottomTagline: 'Designed with Passion & Code',
+        copyrightText: '所有权利保留。'
     },
     currentPageId: 'home',
     pages: [
@@ -222,6 +258,8 @@ export const blockDefaults = {
         item4: { title: '急速性能', icon: '⚡' }
     },
     FeatureGrid: {
+        title: '核心特性',
+        subtitle: '我们提供最前沿的技术支持与设计方案',
         items: [
             { title: '极速响应', desc: '原生级渲染速度。', icon: '⚡' },
             { title: '主题感应', desc: '自适应视觉风格。', icon: '🎨' },
@@ -243,11 +281,23 @@ export const blockDefaults = {
     },
     TeamSection: {
         title: '精英团队',
-        subtitle: '顶尖的工程师与设计师，为您的项目保驾护航。'
+        subtitle: '顶尖的工程师与设计师，为您的项目保驾护航。',
+        members: [
+            { name: 'Alex Rivera', role: 'CEO & Founder', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80', bio: '有着 10 年数字设计经验，致力于打造未来的互联网美学。' },
+            { name: 'Sarah Chen', role: 'Lead Designer', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80', bio: '像素级强迫症患者，在她的世界里，美就是正义。' },
+            { name: 'Marcus Wood', role: 'CTO', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80', bio: '全栈架构师，任何复杂的需求在他手中都能化繁为简。' },
+            { name: 'Elena Petrova', role: 'Strategy Director', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80', bio: '擅长市场趋势分析，为客户品牌提供最深度的洞察。' }
+        ]
     },
     FaqSection: {
         title: '常见建议',
-        subtitle: '帮助您快速上手'
+        subtitle: '帮助您快速上手',
+        items: [
+            { question: '你们能根据我的特定风格定制主题吗？', answer: '当然！我们的引擎天生支持各种视觉风格。无论是极简、复古还是超前，我们都能通过精确的 CSS 注入为您打造个性化体验。' },
+            { question: '项目通常需要多长时间交付？', answer: '根据复杂程度，绝大多数企业官网项目都能在 2-4 周内完成从设计到上线的全过程。' },
+            { question: '你们提供后续的维护服务吗？', answer: '我们提供 7*24 小时的技术支持和持续的内容更新服务。确保您的网站始终处于最佳性能状态。' },
+            { question: '系统是否支持多语言切换？', answer: '是的，我们的架构完全支持多语言。您可以根据全球业务需求，轻松添加无限种语言选项。' }
+        ]
     },
     CtaSection: {
         title: '准备好加入我们了吗？',

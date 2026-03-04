@@ -3,6 +3,7 @@
     <!-- 1. 动态导航栏渲染 -->
     <component 
       :is="navigationComponent" 
+      :data="siteData.navigation"
       v-bind="navProps"
       @navItemClick="handleNavClick"
     />
@@ -17,7 +18,7 @@
           <div v-for="block in activePage.blocks" :key="block.id">
             <component 
               :is="resolveBlock(block.template)" 
-              :data="block.content" 
+              :data="getBlockData(block)" 
             />
           </div>
         </div>
@@ -25,7 +26,7 @@
     </main>
 
     <!-- 3. 动态页脚渲染 -->
-    <component :is="footerComponent" />
+    <component :is="footerComponent" :data="siteData.footer" />
 
     <!-- 增强型悬浮面板 -->
     <div class="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3">
@@ -115,7 +116,7 @@
 
 <script setup>
 import { ref, computed, defineAsyncComponent } from 'vue'
-import { siteData, changePage, toggleBlock } from './engine/siteData'
+import { siteData, changePage, toggleBlock, blockDefaults } from './engine/siteData'
 
 const showPanel = ref(false)
 
@@ -187,6 +188,12 @@ const formatName = (name) => {
 
 const isBlockActive = (template) => {
     return activePage.value.blocks.some(b => b.template === template)
+}
+
+// 获取合并后的区块数据
+const getBlockData = (block) => {
+  const defaults = blockDefaults[block.template] || {}
+  return { ...defaults, ...block.content }
 }
 
 // 为导航条注入内容，并根据当前页面状态更新 active 状态

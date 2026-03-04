@@ -5,9 +5,11 @@
       <div class="p-6 md:p-8 md:w-64 border-b md:border-b-0 md:border-r border-current opacity-30 flex flex-row md:flex-col justify-between items-center md:items-start" :class="sidebarBorderClasses">
         <a href="#" @click.prevent="changePage('home')" class="group flex flex-col">
             <span class="text-4xl font-black leading-none mb-1 group-hover:scale-110 transition-transform origin-left" :class="brandTitleClasses">
-                {{ siteData.navigation.logo.primary }}
+                {{ data?.logo?.primary || siteData.navigation.logo.primary }}
             </span>
-            <span class="text-[10px] font-bold tracking-[0.4em] uppercase opacity-60">Creative Studio</span>
+            <span class="text-[10px] font-bold tracking-[0.4em] uppercase opacity-60">
+                {{ data?.tagline || 'Creative Studio' }}
+            </span>
         </a>
         
         <div class="hidden md:block mt-auto pt-8 border-t border-current opacity-20 w-full mb-4"></div>
@@ -20,7 +22,9 @@
       <div class="flex-grow p-4 md:p-12">
         <div class="flex flex-col h-full">
             <div class="mb-12 hidden md:block">
-                <p class="text-[10px] uppercase tracking-widest font-black mb-4 opacity-40">Main Directory</p>
+                <p class="text-[10px] uppercase tracking-widest font-black mb-4 opacity-40">
+                    {{ data?.directoryTitle || 'Main Directory' }}
+                </p>
                 <div class="flex flex-wrap gap-x-12 gap-y-6">
                     <button v-for="page in siteData.pages" 
                             :key="page.id"
@@ -54,12 +58,14 @@
             <!-- Footer-like utility in Nav -->
             <div class="mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-6" :class="sidebarBorderClasses">
                 <div class="flex gap-8 text-[10px] font-black uppercase tracking-tighter opacity-40">
-                    <a href="#" class="hover:opacity-100 italic transition-opacity">Work with us</a>
-                    <a href="#" class="hover:opacity-100 italic transition-opacity">Photography</a>
-                    <a href="#" class="hover:opacity-100 italic transition-opacity">Contact</a>
+                    <template v-if="data?.extraLinks">
+                        <a v-for="link in data.extraLinks" :key="link.label" :href="link.link" class="hover:opacity-100 italic transition-opacity">
+                            {{ link.label }}
+                        </a>
+                    </template>
                 </div>
                 <button class="px-8 py-4 rounded-xl font-black text-xs transition-all hover:scale-105 active:scale-95" :class="ctaClasses">
-                    BOOK A DISCOVERY CALL
+                    {{ data?.ctaText || 'Get Started' }}
                 </button>
             </div>
         </div>
@@ -71,6 +77,10 @@
 <script setup>
 import { computed } from 'vue'
 import { siteData, changePage } from '../../engine/siteData'
+
+const props = defineProps({
+  data: Object
+})
 
 const themeClasses = computed(() => {
   switch (siteData.config.theme) {

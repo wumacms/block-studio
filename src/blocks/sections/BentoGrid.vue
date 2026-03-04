@@ -9,34 +9,34 @@
         <!-- Main Feature (Large) -->
         <div class="md:col-span-2 md:row-span-2 p-10 rounded-3xl relative group cursor-pointer overflow-hidden" :class="itemClasses">
            <div class="relative z-10">
-             <div class="text-5xl mb-6">{{ data?.mainItem?.icon || '💎' }}</div>
-             <h3 class="text-3xl font-black mb-4">{{ data?.mainItem?.title || '核心竞争力' }}</h3>
-             <p class="opacity-70 text-lg">{{ data?.mainItem?.desc || '我们的底层引擎采用了最先进的原子化区块技术。' }}</p>
+             <div class="text-5xl mb-6">{{ data?.mainItem?.icon }}</div>
+             <h3 class="text-3xl font-black mb-4">{{ data?.mainItem?.title }}</h3>
+             <p class="opacity-70 text-lg">{{ data?.mainItem?.desc }}</p>
            </div>
            <div class="absolute bottom-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-             <div class="text-[120px] font-black">{{ data?.mainItem?.bgText || 'CORE' }}</div>
+             <div class="text-[120px] font-black">{{ data?.mainItem?.bgText }}</div>
            </div>
         </div>
         
         <!-- Feature 2 -->
         <div class="md:col-span-2 p-8 rounded-3xl flex items-center justify-between" :class="itemClasses">
            <div>
-             <h4 class="text-xl font-bold mb-2">{{ data?.item2?.title || '多端适配' }}</h4>
-             <p class="opacity-60 text-sm">{{ data?.item2?.desc || '完美支持各种屏幕尺寸。' }}</p>
+             <h4 class="text-xl font-bold mb-2">{{ data?.item2?.title }}</h4>
+             <p class="opacity-60 text-sm">{{ data?.item2?.desc }}</p>
            </div>
-           <div class="text-4xl">{{ data?.item2?.icon || '📱' }}</div>
+           <div class="text-4xl">{{ data?.item2?.icon }}</div>
         </div>
 
         <!-- Feature 3 -->
         <div class="p-8 rounded-3xl flex flex-col justify-end" :class="itemClasses">
-           <div class="text-3xl mb-4">{{ data?.item3?.icon || '🔒' }}</div>
-           <h4 class="font-bold">{{ data?.item3?.title || '安全稳定' }}</h4>
+           <div class="text-3xl mb-4">{{ data?.item3?.icon }}</div>
+           <h4 class="font-bold">{{ data?.item3?.title }}</h4>
         </div>
 
         <!-- Feature 4 -->
         <div class="p-8 rounded-3xl flex flex-col justify-end" :class="itemClasses">
-           <div class="text-3xl mb-4">{{ data?.item4?.icon || '⚡' }}</div>
-           <h4 class="font-bold">{{ data?.item4?.title || '急速性能' }}</h4>
+           <div class="text-3xl mb-4">{{ data?.item4?.icon }}</div>
+           <h4 class="font-bold">{{ data?.item4?.title }}</h4>
         </div>
       </div>
     </div>

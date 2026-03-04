@@ -3,15 +3,15 @@
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-20 space-y-4">
         <h2 class="text-4xl md:text-6xl font-black" :class="titleClasses">
-          {{ data?.title || '遇见精英团队' }}
+          {{ data?.title }}
         </h2>
         <p class="text-xl opacity-60 max-w-2xl mx-auto">
-          {{ data?.subtitle || '每一位成员都是领域内的专家，共同致力于为您创造价值。' }}
+          {{ data?.subtitle }}
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div v-for="(member, idx) in members" :key="idx" 
+        <div v-for="(member, idx) in data?.members" :key="idx" 
              class="group relative overflow-hidden rounded-3xl p-6 transition-all duration-500"
              :class="cardClasses">
           <div class="relative w-full aspect-square mb-6 rounded-2xl overflow-hidden shadow-xl">
@@ -41,15 +41,6 @@ const props = defineProps({
   data: Object
 })
 
-const members = computed(() => {
-  return props.data?.members || [
-    { name: 'Alex Rivera', role: 'CEO & Founder', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80', bio: '有着 10 年数字设计经验，致力于打造未来的互联网美学。' },
-    { name: 'Sarah Chen', role: 'Lead Designer', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80', bio: '像素级强迫症患者，在她的世界里，美就是正义。' },
-    { name: 'Marcus Wood', role: 'CTO', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80', bio: '全栈架构师，任何复杂的需求在他手中都能化繁为简。' },
-    { name: 'Elena Petrova', role: 'Strategy Director', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80', bio: '擅长市场趋势分析，为客户品牌提供最深度的洞察。' }
-  ]
-})
-
 const themeClasses = computed(() => {
   switch (siteData.config.theme) {
     case 'pop-art': return 'bg-yellow-400 text-black'
@@ -76,6 +67,7 @@ const cardClasses = computed(() => {
     case 'cyberpunk': return 'bg-slate-900 border border-cyan-500/20 hover:border-cyan-400/50'
     case 'fresh': return 'bg-white border-b-8 border-emerald-500 rounded-none shadow-xl'
     case 'luxury': return 'bg-slate-900 border border-amber-500/10 hover:border-amber-500 transition-colors shadow-2xl'
+    case 'yellow': return 'bg-white border-2 border-amber-900 shadow-md hover:bg-amber-50'
     default: return 'bg-gray-50'
   }
 })

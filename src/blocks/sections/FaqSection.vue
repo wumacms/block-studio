@@ -3,15 +3,15 @@
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-16 space-y-4">
         <h2 class="text-4xl md:text-5xl font-black" :class="titleClasses">
-          {{ data?.title || '常见问题' }}
+          {{ data?.title }}
         </h2>
         <p class="text-xl opacity-60">
-          {{ data?.subtitle || '关于我们的服务，您可能想了解这些。' }}
+          {{ data?.subtitle }}
         </p>
       </div>
 
       <div class="space-y-4">
-        <div v-for="(item, idx) in faqItems" :key="idx" 
+        <div v-for="(item, idx) in data?.items" :key="idx" 
              class="rounded-3xl transition-all duration-300 overflow-hidden"
              :class="itemClasses(activeIdx === idx)">
           <button @click="activeIdx = activeIdx === idx ? -1 : idx"
@@ -47,15 +47,6 @@ const props = defineProps({
 })
 
 const activeIdx = ref(0)
-
-const faqItems = computed(() => {
-  return props.data?.items || [
-    { question: '你们能根据我的特定风格定制主题吗？', answer: '当然！我们的引擎天生支持各种视觉风格。无论是极简、复古还是超前，我们都能通过精确的 CSS 注入为您打造个性化体验。' },
-    { question: '项目通常需要多长时间交付？', answer: '根据复杂程度，绝大多数企业官网项目都能在 2-4 周内完成从设计到上线的全过程。' },
-    { question: '你们提供后续的维护服务吗？', answer: '我们提供 7*24 小时的技术支持和持续的内容更新服务。确保您的网站始终处于最佳性能状态。' },
-    { question: '系统是否支持多语言切换？', answer: '是的，我们的架构完全支持多语言。您可以根据全球业务需求，轻松添加无限种语言选项。' }
-  ]
-})
 
 const themeClasses = computed(() => {
   switch (siteData.config.theme) {
@@ -93,6 +84,10 @@ const itemClasses = (isActive) => {
       return isActive
         ? 'bg-slate-800 border border-amber-500/50 shadow-2xl overflow-hidden'
         : 'bg-slate-800/50 border border-amber-500/10 hover:border-amber-500/30'
+    case 'fresh':
+      return isActive
+        ? 'bg-emerald-500 text-white shadow-lg'
+        : 'bg-white border-b-2 border-emerald-100 hover:bg-emerald-50'
     case 'yellow':
        return isActive
         ? 'bg-white border-2 border-amber-950 shadow-xl'

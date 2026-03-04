@@ -8,15 +8,15 @@
 
         <div class="relative z-10 space-y-6">
           <h2 class="text-4xl md:text-7xl font-black leading-tight" :class="titleClasses">
-            {{ data?.title || '准备好开启一段全新的数字征程了吗？' }}
+            {{ data?.title }}
           </h2>
           <p class="text-xl md:text-2xl opacity-80 max-w-3xl mx-auto">
-            {{ data?.subtitle || '立即联系我们，让我们一起探索如何通过设计与技术为您的品牌赋能。' }}
+            {{ data?.subtitle }}
           </p>
           <div class="pt-6">
             <button class="px-12 py-5 text-xl font-bold rounded-full transition-all hover:scale-105 active:scale-95 shadow-2xl" 
                     :class="buttonClasses">
-              {{ data?.ctaText || '立即开始咨询' }}
+              {{ data?.ctaText }}
             </button>
           </div>
         </div>
@@ -40,6 +40,7 @@ const themeClasses = computed(() => {
     case 'cyberpunk': return 'bg-black'
     case 'luxury': return 'bg-slate-950'
     case 'fresh': return 'bg-emerald-50'
+    case 'yellow': return 'bg-amber-100'
     default: return 'bg-white'
   }
 })
@@ -81,6 +82,8 @@ const blurClasses = computed(() => {
     case 'cyberpunk': return 'bg-cyan-500'
     case 'fresh': return 'bg-emerald-300'
     case 'luxury': return 'bg-amber-600'
+    case 'minimal': return 'bg-stone-400'
+    case 'yellow': return 'bg-amber-300'
     default: return 'bg-white/20'
   }
 })
